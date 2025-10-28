@@ -72,7 +72,7 @@ button:focus-visible {
     transform: translateY(0px);
   }
   50% {
-    transform: translateY(-10px);
+    transform: translateY(-8px);
   }
   100% {
     transform: translateY(0px);
@@ -273,4 +273,38 @@ button:focus-visible {
 
 .floatingProduct {
   animation: floatProduct 3s ease-in-out infinite alternate;
+  transition: all 0.5s ease-in-out;
+  transform-origin: center center;
+}
+
+.zoomed {
+  animation: none;
+  transform: scale(1.4);
+  transform-origin: center center;
+}
+
+/* Prevent popping by keeping elements in DOM and fading them */
+.hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-6px);
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+/* Smooth transform-only transition for the product image */
+.productImage {
+  transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+  will-change: transform;
+  display: block;
+}
+
+/* Title/button helpers so hiding doesn't reflow */
+.slideTitle {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-top: 1rem;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.viewBtn {
+  transition: opacity 0.3s ease, transform 0.3s ease;
 }

@@ -1,7 +1,7 @@
 // styles.js
 export const styles = {
   swiperContainer: {
-    width: "189vh",
+    width: "188vh",
     height: "100vh",
     position: "relative",
     overflow: "hidden",
@@ -29,11 +29,9 @@ export const styles = {
   },
   productContainer: {
     cursor: "pointer",
-    transition: "transform 0.5s ease",
   },
   productImg: {
     width: 250,
-    transition: "all 0.5s ease",
   },
   slideTitle: {
     fontSize: "2.5rem",

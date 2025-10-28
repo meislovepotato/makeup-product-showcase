@@ -1,5 +1,5 @@
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Mousewheel, Pagination, Parallax } from "swiper/modules";
+import { Mousewheel, Pagination, Parallax } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import { styles } from "./styles";
@@ -11,13 +11,13 @@ const slides = [
     title: "Crunch Makeup Brush",
     img: "https://www.pngall.com/wp-content/uploads/4/Makeup-Brush-PNG-Clipart.png",
     extras: [
-      "https://www.pngall.com/wp-content/uploads/4/Makeup-Brush-PNG-Clipart.png",
-      "https://www.pngall.com/wp-content/uploads/4/Makeup-Brush-PNG-Clipart.png",
-      "https://www.pngall.com/wp-content/uploads/4/Makeup-Brush-PNG-Clipart.png",
-      "https://www.pngall.com/wp-content/uploads/4/Makeup-Brush-PNG-Clipart.png",
-      "https://www.pngall.com/wp-content/uploads/4/Makeup-Brush-PNG-Clipart.png",
-      "https://www.pngall.com/wp-content/uploads/4/Makeup-Brush-PNG-Clipart.png",
-      "https://www.pngall.com/wp-content/uploads/4/Makeup-Brush-PNG-Clipart.png",
+      "https://www.pngall.com/wp-content/uploads/4/Makeup-Brush-PNG-Image-HD.png",
+      "https://www.pngall.com/wp-content/uploads/4/Pink-Makeup-Brush-Set-PNG-Free-Download.png",
+      "https://www.pngall.com/wp-content/uploads/4/Makeup-Brush-PNG.png",
+      "https://www.pngall.com/wp-content/uploads/4/Pink-Makeup-Brush-Set-PNG-Free-Image.png",
+      "https://www.pngall.com/wp-content/uploads/4/Pink-Makeup-Brush-Set-Transparent.png",
+      "https://www.pngall.com/wp-content/uploads/4/Makeup-Brush-PNG-Photo.png",
+      "https://www.pngall.com/wp-content/uploads/4/Makeup-Brush-PNG-HD-Image.png",
       "https://www.pngall.com/wp-content/uploads/4/Makeup-Brush-PNG-Clipart.png",
     ],
   },
@@ -26,8 +26,14 @@ const slides = [
     title: "Revlon Lipstick",
     img: "https://www.pngall.com/wp-content/uploads/4/Without-Brand-Lipstick-PNG-Free-Download.png",
     extras: [
-      "https://www.pngall.com/wp-content/uploads/4/Makeup-Brush-PNG-Clipart.png",
-      "https://www.freepnglogos.com/uploads/brush-png/makeup-brush-png-transparent-image-pngpix-14.png",
+      "https://www.pngall.com/wp-content/uploads/4/Lipstick-PNG-Download-Image.png",
+      "https://www.pngall.com/wp-content/uploads/4/Glossy-Red-Lipstick-PNG.png",
+      "https://www.pngall.com/wp-content/uploads/4/Lipstick-PNG-Clipart.png",
+      "https://www.pngall.com/wp-content/uploads/4/Glossy-Red-Lipstick-PNG-Free-Download.png",
+      "https://www.pngall.com/wp-content/uploads/4/Glossy-Red-Lipstick-PNG-Image.png",
+      "https://www.pngall.com/wp-content/uploads/4/Without-Brand-Lipstick-PNG-Clipart.png",
+      "https://www.pngall.com/wp-content/uploads/4/Without-Brand-Lipstick.png",
+      "https://www.pngall.com/wp-content/uploads/4/Glossy-Red-Lipstick.png",
     ],
   },
   {
@@ -35,8 +41,14 @@ const slides = [
     title: "JC Perfume",
     img: "https://www.pngall.com/wp-content/uploads/17/Elegant-Scented-Liquid-Bottle-PNG.png",
     extras: [
-      "https://www.pngall.com/wp-content/uploads/4/Makeup-Brush-PNG-Clipart.png",
-      "https://banner2.cleanpng.com/20180527/gpj/kisspng-lipstick-5b0a9f51af8299.2629088515274228017189.jpg",
+      "https://www.pngall.com/wp-content/uploads/17/Vibrant-Juicy-Couture-Fragrance-PNG.png",
+      "https://www.pngall.com/wp-content/uploads/17/Trendy-Perfume-Branding-PNG.png",
+      "https://www.pngall.com/wp-content/uploads/17/Juicy-Couture-Fragrance-Bottle-PNG.png",
+      "https://www.pngall.com/wp-content/uploads/17/Fashionable-Perfume-Presentation-PNG.png",
+      "https://www.pngall.com/wp-content/uploads/17/Fashion-Inspired-Perfume-Design-PNG.png",
+      "https://www.pngall.com/wp-content/uploads/17/Chic-Designer-Fragrance-Container-PNG.png",
+      "https://www.pngall.com/wp-content/uploads/17/Signature-Juicy-Couture-Aroma-PNG.png",
+      "https://www.pngall.com/wp-content/uploads/17/Floral-Scented-Perfume-Bottle-PNG.png",
     ],
   },
 ];
@@ -48,13 +60,7 @@ const ProductSlide = ({ slide, isActive }) => {
 
   const handleProductClick = () => {
     if (!isActive) return;
-    const newState = !isClicked;
-    setIsClicked(newState);
-
-    if (productRef.current) {
-      productRef.current.style.transition = "transform 0.5s ease";
-      productRef.current.style.transform = newState ? "scale(1.4)" : "scale(1)";
-    }
+    setIsClicked((prev) => !prev);
   };
 
   const getExtraPosition = (index, total) => {
@@ -106,39 +112,43 @@ const ProductSlide = ({ slide, isActive }) => {
         );
       })}
 
-      {/* Title - disappears when clicked */}
-      {!isClicked && (
-        <h1 className="slideTitle floatingTitle">{slide.title}</h1>
-      )}
+      {/* Title - fade out when clicked to avoid layout reflow */}
+      <h1 className={`slideTitle floatingTitle ${isClicked ? "hidden" : ""}`}>
+        {slide.title}
+      </h1>
 
       <div style={styles.centerContent} data-swiper-parallax="-200">
         {/* Product Image with Floating Animation - Clickable */}
 
         <div
-          className={`title ${!isClicked ? "floatingProduct" : ""}`}
           ref={productRef}
           style={styles.productContainer}
           onClick={handleProductClick}
+          className={`${!isClicked ? "floatingProduct" : ""}`}
         >
-          <img src={slide.img} alt="product" style={styles.productImg} />
+          <img
+            src={slide.img}
+            alt="product"
+            style={styles.productImg}
+            className={`productImage ${isClicked ? "zoomed" : ""}`}
+          />
         </div>
 
-        {/* Regular View Button - disappears when clicked */}
-        {!isClicked && (
-          <button
-            style={styles.viewBtn}
-            onMouseOver={(e) => {
-              e.target.style.backgroundColor = "white";
-              e.target.style.color = "black";
-            }}
-            onMouseOut={(e) => {
-              e.target.style.backgroundColor = "transparent";
-              e.target.style.color = "white";
-            }}
-          >
-            View Product
-          </button>
-        )}
+        {/* Regular View Button - fade out when clicked to avoid reflow */}
+        <button
+          style={styles.viewBtn}
+          className={isClicked ? "hidden" : ""}
+          onMouseOver={(e) => {
+            e.target.style.backgroundColor = "white";
+            e.target.style.color = "black";
+          }}
+          onMouseOut={(e) => {
+            e.target.style.backgroundColor = "transparent";
+            e.target.style.color = "white";
+          }}
+        >
+          View Product
+        </button>
 
         {/* Detail View Button - appears in middle when clicked */}
         {isClicked && (
@@ -174,10 +184,6 @@ export default function ProductSwiper() {
         mousewheel={true}
         speed={1200}
         parallax={true}
-        // autoplay={{
-        //   delay: 4000,
-        //   disableOnInteraction: false,
-        // }}
         modules={[Parallax, Pagination, Mousewheel]}
         style={{ width: "100%", height: "100%" }}
         onSlideChange={(swiper) => setActiveIndex(swiper.activeIndex)}
