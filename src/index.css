@@ -66,3 +66,85 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+@keyframes float1 {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  100% {
+    transform: translate(10px, -8px) rotate(2deg);
+  }
+}
+
+@keyframes float2 {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  100% {
+    transform: translate(-12px, 6px) rotate(-3deg);
+  }
+}
+
+@keyframes float3 {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  100% {
+    transform: translate(8px, 10px) rotate(1.5deg);
+  }
+}
+
+@keyframes float4 {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  100% {
+    transform: translate(-9px, -6px) rotate(-2deg);
+  }
+}
+
+@keyframes float5 {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  100% {
+    transform: translate(6px, -10px) rotate(3deg);
+  }
+}
+
+.floating {
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+  animation-direction: alternate;
+}
+
+/* Assign random animations to each extra image */
+.floating:nth-child(1) {
+  animation-name: float1;
+}
+.floating:nth-child(2) {
+  animation-name: float2;
+}
+.floating:nth-child(3) {
+  animation-name: float3;
+}
+.floating:nth-child(4) {
+  animation-name: float4;
+}
+.floating:nth-child(5) {
+  animation-name: float5;
+}
+
+@keyframes floatTitle {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(0px, -8px);
+  }
+}
+
+.floatingTitle {
+  animation: floatTitle 2s ease-in-out infinite alternate;
+}
