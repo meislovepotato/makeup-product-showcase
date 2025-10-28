@@ -41,18 +41,6 @@ const slides = [
   },
 ];
 
-// Floating animation component using CSS classes
-const FloatingElement = ({ children, delay = 0, isAnimating = true }) => {
-  const getFloatingClass = () => {
-    if (!isAnimating) return "";
-    if (delay === 500) return "floating-delay-1";
-    if (delay === 1000) return "floating-delay-2";
-    return "floating";
-  };
-
-  return <div className={getFloatingClass()}>{children}</div>;
-};
-
 const ProductSlide = ({ slide, isActive }) => {
   const [isClicked, setIsClicked] = useState(false);
   const productRef = useRef(null);
@@ -71,7 +59,7 @@ const ProductSlide = ({ slide, isActive }) => {
 
   const getExtraPosition = (index, total) => {
     // Use larger radius when clicked, smaller when not
-    const baseRadius = isClicked ? 600 : 300;
+    const baseRadius = isClicked ? 600 : 320;
 
     const startAngle = (-Math.PI * 4.9) / 4;
     const endAngle = (Math.PI * 1.7) / 4;
@@ -83,7 +71,7 @@ const ProductSlide = ({ slide, isActive }) => {
     return {
       left: `calc(50% + ${x}px)`,
       top: `calc(30% + ${y}px)`,
-      transform: "translate(-50%, 150%)",
+      transform: "translate(-50%,-20%)",
     };
   };
 
@@ -92,65 +80,64 @@ const ProductSlide = ({ slide, isActive }) => {
       <div style={styles.glowLayer}></div>
       <div style={styles.vignetteLayer}></div>
       {/* Floating Extras - positioned around the product */}
-      {slide.extras.map((extra, extraIndex) => (
-        <div
-          key={extraIndex}
-          className="floating-extra"
-          style={{
-            animationDelay: `${extraIndex * 0.7}s`,
-          }}
-        >
-          <img
-            ref={(el) => (extrasRef.current[extraIndex] = el)}
-            src={extra}
-            alt={`extra-${extraIndex}`}
+      {slide.extras.map((extra, extraIndex) => {
+        const floatNum = (extraIndex % 9) + 1; // choose one of float1–float4
+        const duration = 8 + Math.random() * 3;
+        return (
+          <div
+            key={extraIndex}
             style={{
-              ...styles.floatingExtra,
-              ...getExtraPosition(extraIndex, slide.extras.length),
               position: "absolute",
-              filter: isClicked ? "blur(3px)" : "blur(0px)",
-              opacity: isClicked ? 0.6 : 0.85,
+              animation: `floatExtra${floatNum} ${duration}s ease-in-out infinite alternate`,
             }}
-          />
-        </div>
-      ))}
+          >
+            <img
+              ref={(el) => (extrasRef.current[extraIndex] = el)}
+              src={extra}
+              alt={`extra-${extraIndex}`}
+              style={{
+                ...styles.floatingExtra,
+                ...getExtraPosition(extraIndex, slide.extras.length),
+                filter: isClicked ? "blur(3px)" : "blur(0px)",
+                opacity: isClicked ? 0.6 : 0.85,
+              }}
+            />
+          </div>
+        );
+      })}
 
       {/* Title - disappears when clicked */}
       {!isClicked && (
-        <FloatingElement delay={500} isAnimating={!isClicked}>
-          <h1 style={styles.slideTitle}>{slide.title}</h1>
-        </FloatingElement>
+        <h1 className="slideTitle floatingTitle">{slide.title}</h1>
       )}
 
       <div style={styles.centerContent} data-swiper-parallax="-200">
         {/* Product Image with Floating Animation - Clickable */}
-        <FloatingElement isAnimating={!isClicked}>
-          <div
-            ref={productRef}
-            style={styles.productContainer}
-            onClick={handleProductClick}
-          >
-            <img src={slide.img} alt="product" style={styles.productImg} />
-          </div>
-        </FloatingElement>
+
+        <div
+          className={`title ${!isClicked ? "floatingProduct" : ""}`}
+          ref={productRef}
+          style={styles.productContainer}
+          onClick={handleProductClick}
+        >
+          <img src={slide.img} alt="product" style={styles.productImg} />
+        </div>
 
         {/* Regular View Button - disappears when clicked */}
         {!isClicked && (
-          <FloatingElement delay={1000} isAnimating={!isClicked}>
-            <button
-              style={styles.viewBtn}
-              onMouseOver={(e) => {
-                e.target.style.backgroundColor = "white";
-                e.target.style.color = "black";
-              }}
-              onMouseOut={(e) => {
-                e.target.style.backgroundColor = "transparent";
-                e.target.style.color = "white";
-              }}
-            >
-              View Product
-            </button>
-          </FloatingElement>
+          <button
+            style={styles.viewBtn}
+            onMouseOver={(e) => {
+              e.target.style.backgroundColor = "white";
+              e.target.style.color = "black";
+            }}
+            onMouseOut={(e) => {
+              e.target.style.backgroundColor = "transparent";
+              e.target.style.color = "white";
+            }}
+          >
+            View Product
+          </button>
         )}
 
         {/* Detail View Button - appears in middle when clicked */}
