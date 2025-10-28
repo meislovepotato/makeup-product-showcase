@@ -77,6 +77,32 @@ export const styles = {
     cursor: "pointer",
     transition: "all 0.3s ease",
   },
+
+  glowLayer: {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    width: "600px",
+    height: "600px",
+    background:
+      "radial-gradient(circle, rgba(255,255,255,0.25) 0%, transparent 100%)",
+    transform: "translate(-50%, -50%)",
+    borderRadius: "50%",
+    filter: "blur(90px)",
+    zIndex: 1,
+    pointerEvents: "none",
+  },
+  vignetteLayer: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    width: "100%",
+    height: "100%",
+    background:
+      "radial-gradient(circle at center, transparent 50%, rgba(0, 0, 0, 0.27) 110%)",
+    zIndex: 0,
+    pointerEvents: "none",
+  },
 };
 
 // CSS animations
@@ -126,8 +152,8 @@ const floatingAnimation = `
 `;
 
 // Inject the styles
-if (typeof document !== 'undefined') {
-  const styleSheet = document.createElement('style');
+if (typeof document !== "undefined") {
+  const styleSheet = document.createElement("style");
   styleSheet.textContent = floatingAnimation;
   document.head.appendChild(styleSheet);
 }

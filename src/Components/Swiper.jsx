@@ -89,6 +89,8 @@ const ProductSlide = ({ slide, isActive }) => {
 
   return (
     <div style={styles.slideContent(slide.bgColor)}>
+      <div style={styles.glowLayer}></div>
+      <div style={styles.vignetteLayer}></div>
       {/* Floating Extras - positioned around the product */}
       {slide.extras.map((extra, extraIndex) => (
         <div
