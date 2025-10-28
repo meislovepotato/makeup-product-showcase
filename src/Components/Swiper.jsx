@@ -79,13 +79,14 @@ const ProductSlide = ({ slide, isActive }) => {
     <div style={styles.slideContent(slide.bgColor)}>
       {/* Floating Extras - positioned around the product */}
       {slide.extras.map((extra, extraIndex) => {
-        const floatNum = (extraIndex % 4) + 1; // choose one of float1–float4
+        const floatNum = (extraIndex % 9) + 1; // choose one of float1–float4
+        const duration = 8 + Math.random() * 3;
         return (
           <div
             key={extraIndex}
             style={{
               position: "absolute",
-              animation: `float${floatNum} 6s ease-in-out infinite alternate`,
+              animation: `floatExtra${floatNum} ${duration}s ease-in-out infinite alternate`,
             }}
           >
             <img
@@ -105,38 +106,36 @@ const ProductSlide = ({ slide, isActive }) => {
 
       {/* Title - disappears when clicked */}
       {!isClicked && (
-        <div className="floatingTitle">{slide.title}</div>
+        <h1 className="slideTitle floatingTitle">{slide.title}</h1>
       )}
 
       <div style={styles.centerContent} data-swiper-parallax="-200">
         {/* Product Image with Floating Animation - Clickable */}
-        <div className={`floating ${!isClicked ? "floating-active" : ""}`}>
-          <div
-            ref={productRef}
-            style={styles.productContainer}
-            onClick={handleProductClick}
-          >
-            <img src={slide.img} alt="product" style={styles.productImg} />
-          </div>
+
+        <div
+          className={`title ${!isClicked ? "floatingProduct" : ""}`}
+          ref={productRef}
+          style={styles.productContainer}
+          onClick={handleProductClick}
+        >
+          <img src={slide.img} alt="product" style={styles.productImg} />
         </div>
 
         {/* Regular View Button - disappears when clicked */}
         {!isClicked && (
-          <div className={`floating ${!isClicked ? "floating-active" : ""}`}>
-            <button
-              style={styles.viewBtn}
-              onMouseOver={(e) => {
-                e.target.style.backgroundColor = "white";
-                e.target.style.color = "black";
-              }}
-              onMouseOut={(e) => {
-                e.target.style.backgroundColor = "transparent";
-                e.target.style.color = "white";
-              }}
-            >
-              View Product
-            </button>
-          </div>
+          <button
+            style={styles.viewBtn}
+            onMouseOver={(e) => {
+              e.target.style.backgroundColor = "white";
+              e.target.style.color = "black";
+            }}
+            onMouseOut={(e) => {
+              e.target.style.backgroundColor = "transparent";
+              e.target.style.color = "white";
+            }}
+          >
+            View Product
+          </button>
         )}
 
         {/* Detail View Button - appears in middle when clicked */}
