@@ -60,30 +60,25 @@ const ProductSlide = ({ slide, isActive }) => {
 
   const handleProductClick = () => {
     if (!isActive) return;
-    setIsClicked(true);
+    const newState = !isClicked;
+    setIsClicked(newState);
 
     if (productRef.current) {
       productRef.current.style.transition = "transform 0.5s ease";
-      productRef.current.style.transform = "scale(1.4)";
-    }
-  };
-
-  const handleCloseDetails = () => {
-    setIsClicked(false);
-
-    if (productRef.current) {
-      productRef.current.style.transition = "transform 0.5s ease";
-      productRef.current.style.transform = "scale(1)";
+      productRef.current.style.transform = newState ? "scale(1.4)" : "scale(1)";
     }
   };
 
   const getExtraPosition = (index, total) => {
     // Use larger radius when clicked, smaller when not
     const baseRadius = isClicked ? 600 : 300;
-    const angle = (index / total) * Math.PI * 2;
+
+    const startAngle = (-Math.PI * 4.9) / 4;
+    const endAngle = (Math.PI * 1.7) / 4;
+    const angle = startAngle + (index / total) * (endAngle - startAngle);
 
     const x = Math.cos(angle) * baseRadius;
-    const y = Math.sin(angle) * baseRadius;
+    let y = Math.sin(angle) * baseRadius;
 
     return {
       left: `calc(50% + ${x}px)`,
@@ -161,7 +156,6 @@ const ProductSlide = ({ slide, isActive }) => {
           <div style={styles.detailButtonContainer}>
             <button
               style={styles.detailButton}
-              onClick={handleCloseDetails}
               onMouseOver={(e) => {
                 e.target.style.backgroundColor = "white";
                 e.target.style.color = "black";
