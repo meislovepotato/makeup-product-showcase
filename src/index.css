@@ -81,6 +81,11 @@ button:focus-visible {
   transform: scale(0.98);
 }
 
+/* hide burger by default (shown only on small screens) */
+.burgerButton {
+  display: none;
+}
+
 .viewBtn:focus,
 .detailButton:focus {
   box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.05);
@@ -366,4 +371,337 @@ button:focus-visible {
   left: 3% !important;
   top: 50% !important;
   transform: translateY(-50%) !important;
+}
+
+/* Responsive breakpoints and element sizing
+   Breakpoints:
+   - 1440px and above
+   - 1439px to 1024px
+   - 1023px to 768px
+   - 767px to 425px
+   - 424px to 375px
+   - 374px to 320px
+   - 319px and below
+*/
+
+/* base: mobile-first defaults already apply above; now larger breakpoints */
+
+/* 320px and below (very small) */
+@media (max-width: 320px) {
+  .slideTitle {
+    font-size: 1.2rem;
+  }
+  .productImage {
+    width: 140px !important;
+  }
+  .floatingExtra {
+    width: 36px !important;
+  }
+  .viewBtn {
+    padding: 6px 10px !important;
+    font-size: 0.78rem !important;
+  }
+  .detailButton {
+    padding: 6px 10px !important;
+    font-size: 0.78rem !important;
+  }
+  .iconButton {
+    width: 34px;
+    height: 34px;
+    font-size: 14px;
+  }
+  .swiper-vertical .swiper-pagination {
+    left: 6% !important;
+  }
+  /* smaller pagination bullets for very small screens */
+  .swiper-pagination-bullet {
+    width: 8px !important;
+    height: 8px !important;
+    margin: 4px !important;
+  }
+  .swiper-pagination-bullet-active {
+    width: 10px !important;
+    height: 10px !important;
+  }
+}
+
+/* 321px to 375px (small phones) */
+@media (min-width: 321px) and (max-width: 375px) {
+  .slideTitle {
+    font-size: 1.45rem;
+  }
+  .productImage {
+    width: 160px !important;
+  }
+  .floatingExtra {
+    width: 44px !important;
+  }
+  .viewBtn {
+    padding: 7px 12px !important;
+    font-size: 0.82rem !important;
+  }
+  .detailButton {
+    padding: 7px 12px !important;
+    font-size: 0.82rem !important;
+  }
+  .iconButton {
+    width: 36px;
+    height: 36px;
+    font-size: 15px;
+  }
+  .swiper-vertical .swiper-pagination {
+    left: 5% !important;
+  }
+  /* small phones */
+  .swiper-pagination-bullet {
+    width: 10px !important;
+    height: 10px !important;
+    margin: 4px !important;
+  }
+  .swiper-pagination-bullet-active {
+    width: 12px !important;
+    height: 12px !important;
+  }
+}
+
+/* 376px to 425px (mobile large) */
+@media (min-width: 376px) and (max-width: 425px) {
+  .slideTitle {
+    font-size: 1.7rem;
+  }
+  .productImage {
+    width: 200px !important;
+  }
+  .floatingExtra {
+    width: 54px !important;
+  }
+  .viewBtn {
+    padding: 8px 14px !important;
+    font-size: 0.9rem !important;
+  }
+  .detailButton {
+    padding: 8px 16px !important;
+    font-size: 0.9rem !important;
+  }
+  .iconButton {
+    width: 38px;
+    height: 38px;
+    font-size: 16px;
+  }
+  .swiper-vertical .swiper-pagination {
+    left: 4% !important;
+  }
+  /* mobile large */
+  .swiper-pagination-bullet {
+    width: 12px !important;
+    height: 12px !important;
+    margin: 5px !important;
+  }
+  .swiper-pagination-bullet-active {
+    width: 14px !important;
+    height: 14px !important;
+  }
+}
+
+/* At small widths hide the regular icon bars and show a burger menu */
+@media (max-width: 425px) {
+  .iconBar {
+    display: none !important;
+  }
+
+  .burgerButton {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    background: transparent;
+    color: white;
+    font-size: 18px;
+  }
+
+  /* position burger and menu on the left for mobile */
+  .burgerButton {
+    position: absolute !important;
+    left: 16px !important;
+    top: 14px !important;
+  }
+
+  /* mobile menu hidden by default, .open class makes it visible */
+  .mobileMenu {
+    display: none !important;
+  }
+  .mobileMenu.open {
+    display: block !important;
+  }
+
+  /* ensure the mobile menu appears from the left (near the burger) */
+  .mobileMenu {
+    right: auto !important;
+    left: 16px !important;
+  }
+
+  .mobileMenuItem {
+    width: 100%;
+    padding: 10px 12px;
+    color: white;
+    background: transparent;
+    border: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+}
+
+/* 426px to 768px (tablet / large phones) */
+@media (min-width: 426px) and (max-width: 768px) {
+  .slideTitle {
+    font-size: 2rem;
+  }
+  .productImage {
+    width: 240px !important;
+  }
+  .floatingExtra {
+    width: 68px !important;
+  }
+  .viewBtn {
+    padding: 9px 18px !important;
+    font-size: 0.98rem !important;
+  }
+  .detailButton {
+    padding: 10px 20px !important;
+    font-size: 0.98rem !important;
+  }
+  .iconButton {
+    width: 42px;
+    height: 42px;
+    font-size: 17px;
+  }
+  .swiper-vertical .swiper-pagination {
+    left: 3.4% !important;
+  }
+  .swiper-pagination-bullet {
+    width: 14px !important;
+    height: 14px !important;
+    margin: 6px !important;
+  }
+  .swiper-pagination-bullet-active {
+    width: 16px !important;
+    height: 16px !important;
+  }
+}
+
+/* 769px to 1024px (small laptops / tablets) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .slideTitle {
+    font-size: 2.4rem;
+  }
+  .productImage {
+    width: 300px !important;
+  }
+  .floatingExtra {
+    width: 80px !important;
+  }
+  .viewBtn {
+    padding: 10px 22px !important;
+    font-size: 1rem !important;
+  }
+  .detailButton {
+    padding: 12px 26px !important;
+    font-size: 1rem !important;
+  }
+  .iconButton {
+    width: 46px;
+    height: 46px;
+    font-size: 18px;
+  }
+  .swiper-vertical .swiper-pagination {
+    left: 2.8% !important;
+  }
+  .swiper-pagination-bullet {
+    width: 16px !important;
+    height: 16px !important;
+    margin: 6px !important;
+  }
+  .swiper-pagination-bullet-active {
+    width: 18px !important;
+    height: 18px !important;
+  }
+}
+
+/* 1025px to 1439px (desktop small to medium) */
+@media (min-width: 1025px) and (max-width: 1439px) {
+  .slideTitle {
+    font-size: 2.8rem;
+  }
+  .productImage {
+    width: 340px !important;
+  }
+  .floatingExtra {
+    width: 92px !important;
+  }
+  .viewBtn {
+    padding: 12px 26px !important;
+    font-size: 1.02rem !important;
+  }
+  .detailButton {
+    padding: 14px 30px !important;
+    font-size: 1.02rem !important;
+  }
+  .iconButton {
+    width: 50px;
+    height: 50px;
+    font-size: 19px;
+  }
+  .swiper-vertical .swiper-pagination {
+    left: 2.6% !important;
+  }
+  .swiper-pagination-bullet {
+    width: 18px !important;
+    height: 18px !important;
+    margin: 7px !important;
+  }
+  .swiper-pagination-bullet-active {
+    width: 20px !important;
+    height: 20px !important;
+  }
+}
+
+/* 1440px and above (large desktops) */
+@media (min-width: 1440px) {
+  .slideTitle {
+    font-size: 3rem;
+  }
+  .productImage {
+    width: 380px !important;
+  }
+  .floatingExtra {
+    width: 104px !important;
+  }
+  .viewBtn {
+    padding: 14px 30px !important;
+    font-size: 1.05rem !important;
+  }
+  .detailButton {
+    padding: 16px 34px !important;
+    font-size: 1.05rem !important;
+  }
+  .iconButton {
+    width: 56px;
+    height: 56px;
+    font-size: 20px;
+  }
+  .swiper-vertical .swiper-pagination {
+    left: 2.2% !important;
+  }
+  .swiper-pagination-bullet {
+    width: 18px !important;
+    height: 18px !important;
+    margin: 7px !important;
+  }
+  .swiper-pagination-bullet-active {
+    width: 20px !important;
+    height: 20px !important;
+  }
 }

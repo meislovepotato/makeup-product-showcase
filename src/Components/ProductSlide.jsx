@@ -12,8 +12,25 @@ export default function ProductSlide({ slide, isActive }) {
   };
 
   const getExtraPosition = (index, total) => {
-    // Use larger radius when clicked, smaller when not
-    const baseRadius = isClicked ? 600 : 320;
+
+    const vw = typeof window !== "undefined" ? window.innerWidth : 1440;
+    let baseRadius = isClicked ? 600 : 320;
+
+    if (vw <= 1024) {
+      baseRadius = isClicked ? 450 : 220;
+    }
+    if (vw <= 768) {
+      baseRadius = isClicked ? 380 : 180;
+    }
+    if (vw <= 425) {
+      baseRadius = isClicked ? 320 : 140;
+    }
+    if (vw <= 375) {
+      baseRadius = isClicked ? 280 : 120;
+    }
+    if (vw <= 319) {
+      baseRadius = isClicked ? 240 : 100;
+    }
 
     const startAngle = (-Math.PI * 4.9) / 4;
     const endAngle = (Math.PI * 1.7) / 4;
@@ -49,6 +66,7 @@ export default function ProductSlide({ slide, isActive }) {
               ref={(el) => (extrasRef.current[extraIndex] = el)}
               src={extra}
               alt={`extra-${extraIndex}`}
+              className="floatingExtra"
               style={{
                 ...styles.floatingExtra,
                 ...getExtraPosition(extraIndex, slide.extras.length),
@@ -72,7 +90,7 @@ export default function ProductSlide({ slide, isActive }) {
           ref={productRef}
           style={styles.productContainer}
           onClick={handleProductClick}
-          className={`${!isClicked ? "floatingProduct" : ""}`}
+          className={`productContainer ${!isClicked ? "floatingProduct" : ""}`}
         >
           <img
             src={slide.img}
