@@ -1,7 +1,7 @@
 // styles.js
 export const styles = {
   swiperContainer: {
-    width: "188vh",
+    width: "100%",
     height: "100vh",
     position: "relative",
     overflow: "hidden",
