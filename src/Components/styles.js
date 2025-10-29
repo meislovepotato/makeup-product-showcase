@@ -57,6 +57,7 @@ export const styles = {
     cursor: "pointer",
     transition: "all 0.5s ease",
   },
+
   detailButtonContainer: {
     position: "absolute",
     top: "50%",
@@ -100,5 +101,51 @@ export const styles = {
       "radial-gradient(circle at center, transparent 50%, rgba(0, 0, 0, 0.27) 110%)",
     zIndex: 0,
     pointerEvents: "none",
+  },
+
+  /* Header Styles */
+  headerContainer: {
+    position: "fixed",
+    top: 0,
+    left: 0,
+    right: 0,
+    height: "70px",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
+    padding: "0 50px",
+    zIndex: 1000,
+    color: "white",
+    fontFamily: "'Poppins', sans-serif",
+    fontWeight: 300,
+    fontSize: "14px",
+  },
+
+  logo: {
+    textAlign: "center",
+    fontSize: "20px",
+    fontWeight: 500,
+    letterSpacing: "1px",
+  },
+
+  logoText: {
+    color: "white",
+    fontSize: "18px",
+    fontWeight: 600,
+  },
+
+  iconBar: {
+    display: "flex",
+    alignItems: "center",
+    gap: "20px",
+  },
+
+  iconButton: {
+    background: "transparent",
+    border: "none",
+    color: "white",
+    fontSize: "16px",
+    cursor: "pointer",
+    transition: "opacity 0.3s ease",
   },
 };
