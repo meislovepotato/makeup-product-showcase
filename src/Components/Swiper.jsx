@@ -22,7 +22,7 @@ const slides = [
     ],
   },
   {
-    bgColor: "#D47E1B",
+    bgColor: "#f0399eff",
     title: "Revlon Lipstick",
     img: "https://www.pngall.com/wp-content/uploads/4/Without-Brand-Lipstick-PNG-Free-Download.png",
     extras: [
