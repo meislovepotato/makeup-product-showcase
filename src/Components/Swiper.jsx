@@ -3,7 +3,6 @@ import { Mousewheel, Pagination, Parallax } from "swiper/modules";
 import { useState } from "react";
 import { styles } from "./styles";
 import { slides } from "./slides";
-import Header from "./Header";
 import "swiper/css";
 import "swiper/css/pagination";
 import ProductSlide from "./ProductSlide";
@@ -13,12 +12,11 @@ export default function ProductSwiper() {
 
   return (
     <div style={styles.swiperContainer}>
-      <Header />
       <Swiper
         direction="vertical"
         pagination={{ clickable: true }}
         mousewheel={true}
-        speed={1200}
+        speed={900}
         parallax={true}
         modules={[Parallax, Pagination, Mousewheel]}
         style={{ width: "100%", height: "100%" }}
